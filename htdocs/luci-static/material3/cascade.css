@@ -22,6 +22,21 @@
 		--border-color-s: var(--background-color-s)
 	}
 
+	::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+	::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	::-webkit-scrollbar-thumb {
+		background: color-mix(in srgb, var(--text-color-medium) 30%, transparent);
+		border-radius: 3px;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background: color-mix(in srgb, var(--text-color-medium) 50%, transparent);
+	}
+
 	address,
 	dl dd,
 	dl dt,
@@ -179,7 +194,7 @@
 		--on-warn-color: var(--text-color-highest);
 		--disabled-opacity: .7;
 		color-scheme: light;
-		--sidebar-width: 280px;
+		--sidebar-width: 256px;
 		--header-height: 4rem;
 		--md-sys-color-primary: hsl(256, 34%, 48%);
 		--md-sys-color-primary-container: hsl(263, 65%, 92%);
@@ -2475,8 +2490,11 @@
 
 	.nav .dropdown-menu li a,
 	.nav>li>a {
-		padding: 1rem 1.5rem;
+		padding: 0.6rem 1rem;
+		margin: 0.2rem 0.6rem;
+		border-radius: 2rem;
 		line-height: 1.5rem;
+		font-size: 14px;
 	}
 
 	.uci-dialog div>ins {
@@ -2767,7 +2785,12 @@
 		padding: 0;
 		overflow-y: auto;
 		transition: transform .3s;
-		font-size: 1rem;
+		font-size: 14px;
+		scrollbar-width: none;
+	}
+
+	.sidebar::-webkit-scrollbar {
+		display: none;
 	}
 
 	.sidebar-overlay {
@@ -2795,14 +2818,15 @@
 	.nav>li>a {
 		align-items: center;
 		color: var(--text-color-high);
-		border-radius: 2rem
+		border-radius: 2rem;
+		padding: 0.6rem 1rem;
 	}
 
 	.nav>li>a::before {
 		content: '';
-		width: 1.5rem;
-		height: 1.5rem;
-		margin-right: 1rem;
+		width: 1.25rem;
+		height: 1.25rem;
+		margin-right: 0.75rem;
 		background-color: var(--text-color-medium);
 		-webkit-mask: url("icons/other.svg") center/contain no-repeat;
 		mask: url("icons/other.svg") center/contain no-repeat;
@@ -2860,24 +2884,28 @@
 	}
 
 	.nav>li.active>a,
-	.nav>li>a:hover {
-		color: var(--text-color-highest)
+	.nav .dropdown-menu li.active>a {
+		color: var(--primary-color-high) !important;
+		background-color: var(--md-sys-color-primary-container);
+		font-weight: bold;
 	}
 
+	.nav>li>a:hover,
 	.nav .dropdown-menu li a:hover {
-		background-color: #191919;
-		background-repeat: repeat-x;
-		background-image: linear-gradient(to bottom, #292929, #191919);
-		color: #fff
+		background-color: var(--md-sys-color-primary-container-hover) !important;
+		color: var(--text-color-highest);
+	}
+
+	.nav .ripple {
+		display: none !important;
 	}
 
 	.nav>li.dropdown>a::after {
 		opacity: 1;
-		transition: transform .3s
 	}
 
 	.nav>li.dropdown.open>a::after {
-		transform: rotate(225deg)
+		transform: rotate(180deg);
 	}
 
 	.menu-btn {
@@ -2936,11 +2964,12 @@
 
 	.nav>li>a::after {
 		content: '';
-		width: .5rem;
-		height: .5rem;
-		border-right: 2px solid var(--text-color-medium);
-		border-bottom: 2px solid var(--text-color-medium);
-		transition: transform .3s;
+		width: 0;
+		height: 0;
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		border-top: 5px solid var(--text-color-medium);
+		border-bottom: none;
 		opacity: 0
 	}
 
@@ -2961,30 +2990,27 @@
 	.dropdown-menu>li>a {
 		color: var(--text-color-medium);
 		transition: .3s;
-		padding: .6rem 1.5rem .6rem 3rem;
-		color: var(--text-color-medium);
+		padding: .6rem 1rem;
+		margin: 0.2rem 0.6rem 0.2rem 1.2rem;
+		border-radius: 2rem;
 		display: block
 	}
 
 	.dropdown-menu>li {
 		position: relative;
-		border-radius: 2rem;
 		transition: background-color .3s
 	}
 
 	.dropdown-menu>li:hover {
-		background: rgba(0, 0, 0, .05);
-		border-radius: 2rem
+		transition: background-color .3s
 	}
 
 	.dropdown-menu>li.active {
 		border-left-color: var(--primary-color-high);
-		background: var(--md-sys-color-primary-container);
 		transition: background-color .3s
 	}
 
 	.dropdown-menu>li.active:hover {
-		background: var(--md-sys-color-primary-container-hover);
 		transition: background-color .3s
 	}
 
