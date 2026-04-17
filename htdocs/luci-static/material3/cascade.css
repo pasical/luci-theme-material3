@@ -210,9 +210,10 @@
 		--md-sys-color-refresh-button-hover: #a9a0c2;
 		--md-sys-color-font: #000;
 		--md-sys-color-light: #fff;
-		--background-color-h: 256;
-		--background-color-s: 10%;
-		--md-sys-color-surface-dim: hsl(var(--background-color-h), var(--background-color-s), 94%);
+		--background-color-h: 277.5;
+		--background-color-s: 44.4%;
+		--background-color-l: 96.5%;
+		--md-sys-color-surface-dim: hsl(var(--background-color-h), var(--background-color-s), var(--background-color-l));
 	}
 
 	:root[data-theme="blue"] {
@@ -233,7 +234,8 @@
 		--md-sys-color-light: #fff;
 		--background-color-h: 220;
 		--background-color-s: 40%;
-		--md-sys-color-surface-dim: hsl(var(--background-color-h), var(--background-color-s), 93%);
+		--background-color-l: 98%;
+		--md-sys-color-surface-dim: hsl(var(--background-color-h), var(--background-color-s), calc(var(--background-color-l) - 5%));
 	}
 
 	:root[data-theme="green"] {
@@ -252,9 +254,10 @@
 		--md-sys-color-refresh-button-hover: #a0c2a9;
 		--md-sys-color-font: #000;
 		--md-sys-color-light: #fff;
-		--background-color-h: 160;
-		--background-color-s: 8%;
-		--md-sys-color-surface-dim: hsl(var(--background-color-h), var(--background-color-s), 94%);
+		--background-color-h: 80;
+		--background-color-s: 21.4%;
+		--background-color-l: 94.5%;
+		--md-sys-color-surface-dim: hsl(var(--background-color-h), var(--background-color-s), var(--background-color-l));
 	}
 
 	:root[data-theme="red"] {
@@ -273,9 +276,10 @@
 		--md-sys-color-refresh-button-hover: #c2a0a0;
 		--md-sys-color-font: #000;
 		--md-sys-color-light: #fff;
-		--background-color-h: 10;
-		--background-color-s: 10%;
-		--md-sys-color-surface-dim: hsl(var(--background-color-h), var(--background-color-s), 94%);
+		--background-color-h: 7.5;
+		--background-color-s: 100%;
+		--background-color-l: 96.9%;
+		--md-sys-color-surface-dim: hsl(var(--background-color-h), var(--background-color-s), var(--background-color-l));
 	}
 
 	/* ========== 暗色主题颜色继承 ========== */
@@ -588,18 +592,18 @@
 
 	body {
 		display: grid;
-		grid-template-areas: "header header" "sidebar main" "footer footer";
+		grid-template-areas: "header header" "sidebar main" "sidebar footer";
 		grid-template-columns: var(--sidebar-width) 1fr;
-		grid-template-rows: var(--header-height) 1fr;
-		min-height: 100vh;
+		grid-template-rows: var(--header-height) 1fr auto;
+		height: 100vh;
 		margin: 0;
 		padding: 0;
 		background: var(--background-color-medium);
 		font-size: 13px;
 		font-weight: 400;
-		min-height: 100%;
 		flex-direction: column;
-		overflow-y: scroll;
+		overflow: hidden;
+		overscroll-behavior: none;
 		-webkit-tap-highlight-color: transparent;
 	}
 
@@ -1264,7 +1268,9 @@
 	}
 
 	header .brand {
-		font-weight: 900;
+		font-weight: 900 !important;
+		-webkit-text-stroke: 1px currentColor; /* Make it extra bold */
+		letter-spacing: 1px;
 	}
 
 	.tr.placeholder {
@@ -1580,15 +1586,14 @@
 
 	footer {
 		grid-area: footer;
-		padding-top: 17px;
-		margin-top: auto;
-		border-top: 1px solid var(--border-color-low);
+		margin: 0;
+		padding: 1rem 3rem; /* Match maincontent padding */
+		background: var(--md-sys-color-surface);
 		display: flex;
 		flex-wrap: wrap;
 		align-items: baseline;
 		justify-content: space-between;
 		font-size: 12px;
-		padding-left: calc(36%)
 	}
 
 	#modal_overlay {
@@ -2762,8 +2767,15 @@
 		margin-top: 28px
 	}
 
+	[data-page=admin-status-processes] .table .th,
 	[data-page=admin-status-processes] .table .td {
-		word-break: break-all
+		white-space: nowrap;
+	}
+	[data-page=admin-status-processes] .table .th:nth-child(3),
+	[data-page=admin-status-processes] .table .td:nth-child(3) {
+		white-space: normal;
+		word-break: break-all;
+		width: 100%;
 	}
 
 	[data-darkmode=true] [data-page=admin-status-channel_analysis] #view>div>div>div>div>div[style],
@@ -2784,9 +2796,10 @@
 
 	#maincontent {
 		grid-area: main;
-		padding: 1rem;
+		padding: 2rem 6rem; /* Increase side padding to compress content */
+		overflow-y: auto;
 		overflow-x: hidden;
-		min-height: calc(100vh - var(--header-height));
+		height: 100%;
 		width: 100%;
 		box-sizing: border-box;
 		background: var(--md-sys-color-surface);
