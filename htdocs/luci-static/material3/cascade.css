@@ -127,8 +127,7 @@
 		list-style: none
 	}
 
-	.menu-btn.active span::before,
-	.nav>li>a::after {
+	.menu-btn.active span::before {
 		transform: rotate(45deg)
 	}
 
@@ -1449,11 +1448,8 @@
 		color: var(--text-color-medium)
 	}
 
-	.dropdown-menu>li:hover,
-	.nav a.menu:hover,
-	.nav>li>a:hover,
 	.tabs>li:hover {
-		background: #11111111
+		background: rgba(128, 128, 128, 0.1)
 	}
 
 	.cbi-tabmenu>li,
@@ -2488,7 +2484,6 @@
 		background-color: var(--background-color-low)
 	}
 
-	.nav .dropdown-menu li a,
 	.nav>li>a {
 		padding: 0.6rem 1rem;
 		margin: 0.2rem 0.6rem;
@@ -2883,16 +2878,22 @@
 		background-color: var(--text-color-highest)
 	}
 
-	.nav>li.active>a,
+	.nav>li.active:not(.dropdown)>a,
 	.nav .dropdown-menu li.active>a {
-		color: var(--primary-color-high) !important;
+		color: var(--text-color-highest) !important;
 		background-color: var(--md-sys-color-primary-container);
+		font-weight: bold;
+	}
+
+	.nav>li.active.dropdown>a {
+		color: var(--text-color-highest) !important;
+		background-color: color-mix(in srgb, var(--text-color-highest) 8%, transparent);
 		font-weight: bold;
 	}
 
 	.nav>li>a:hover,
 	.nav .dropdown-menu li a:hover {
-		background-color: var(--md-sys-color-primary-container-hover) !important;
+		background-color: color-mix(in srgb, var(--text-color-highest) 5%, transparent) !important;
 		color: var(--text-color-highest);
 	}
 
@@ -2990,8 +2991,8 @@
 	.dropdown-menu>li>a {
 		color: var(--text-color-medium);
 		transition: .3s;
-		padding: .6rem 1rem;
-		margin: 0.2rem 0.6rem 0.2rem 1.2rem;
+		padding: .5rem 1rem;
+		margin: 0.1rem 0.6rem 0.1rem 1.2rem;
 		border-radius: 2rem;
 		display: block
 	}
