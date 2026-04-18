@@ -325,7 +325,7 @@
 			<ul class="nav" id="topmenu" style="display:none"></ul>
 		</aside>
 
-		<div id="maincontent" class="container">
+		<div id="scroll-wrapper"><div id="maincontent" class="container">
 			{% if (getuid() == 0 && getspnam('root')?.pwdp === ''): %}
 				<div class="alert-message warning">
 					<h4>{{ _('No password set!') }}</h4>

@@ -38,14 +38,20 @@ header h3 a {
 	}
 
 	body {
-		grid-template-areas: "header" "main" "footer";
-		grid-template-columns: 1fr
+		grid-template-areas: "header" "main";
+		grid-template-columns: 1fr;
+		grid-template-rows: var(--header-height) 1fr;
+		padding: 0 !important;
+	}
+
+	#scroll-wrapper {
+		border-radius: 0;
 	}
 
 	#maincontent {
 		margin-left: 0;
 		border-radius: 0;
-		padding: 1rem !important; /* Remove large side padding on mobile */
+		padding: 1rem !important;
 	}
 
 	footer {
@@ -408,11 +414,29 @@ header h3 a {
 	.sidebar {
 		transform: translateX(-100%);
 		z-index: 900;
-		border-radius: 0 1rem 1rem 0;
+		border-radius:  0 0 2rem 0;
 		background: var(--md-sys-color-surface) !important;
 		position: fixed;
 		bottom: 0;
-		box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
+		box-shadow: none;
+	}
+
+	/* Bigger touch targets in sidebar */
+	.sidebar .nav > li > a {
+		padding: 1rem 1.5rem !important;
+		font-size: 1.1rem !important;
+		margin: 0.25rem 0.5rem !important;
+	}
+
+	.sidebar .nav > li {
+		margin-bottom: 0.5rem;
+	}
+
+	/* Secondary menu touch targets */
+	.sidebar .nav .slide-menu a, .dropdown-menu>li>a {
+		padding: 0.8rem 2rem !important;
+		font-size: 1.05rem !important;
+		margin: 0.2rem 0.6rem !important;
 	}
 
 	.sidebar.active {
@@ -598,16 +622,5 @@ header h3 a {
 	.ifacebox .ifacebox-body>*,
 	.td .ifacebox .ifacebox-head>* {
 		margin: .125em
-	}
-
-	/* Bigger touch targets in sidebar */
-	.sidebar .nav > li > a {
-		padding: 1rem 1.5rem !important; /* Larger padding for touch */
-		font-size: 1.1rem !important; /* Larger font size */
-		margin: 0.25rem 0.5rem !important; /* More space between items */
-	}
-
-	.sidebar .nav > li {
-		margin-bottom: 0.5rem;
 	}
 }
